@@ -5,7 +5,6 @@ import {
   ButtonBuilder,
   ButtonStyle,
   type TextChannel,
-  AttachmentBuilder,
 } from "discord.js";
 import { BOT_CONFIG } from "../config";
 import { logger } from "../../lib/logger";
@@ -19,36 +18,16 @@ export async function sendTicketPanel(client: Client, channelId?: string) {
     return;
   }
 
-  const attachment = new AttachmentBuilder(`${__dirname}/banner.png`, {
-    name: "banner.png",
-  });
-
   const embed = new EmbedBuilder()
     .setColor(0x00bfff)
-    .setTitle("🎫 Ticket Panel")
+    .setTitle("Ticket Panel - Classic Sword Fight")
+    .setImage("https://via.placeholder.com/1200x300?text=Ticket+Panel+Classic+Sword+Fight")
     .setDescription(
-      "Welcome to **Classic Sword Fight**\nSelect the option that best matches your needs."
+      "❓ **Have a quick question?** - Press Questions below\n" +
+      "🎮 **Have a problem with our discord?** - Press Discord Support below\n" +
+      "🕹️ **Have a problem with our game?** - Press Game Support below"
     )
-    .setImage("attachment://banner.png")
-    .addFields(
-      {
-        name: "❓ Have a quick question?",
-        value: "Press **Questions** to open the matching ticket flow.",
-        inline: false,
-      },
-      {
-        name: "🎮 Need help with Discord?",
-        value: "Press **Discord Support** to open the matching ticket flow.",
-        inline: false,
-      },
-      {
-        name: "🕹️ Need help with a game?",
-        value: "Press **Game Support** to open the matching ticket flow.",
-        inline: false,
-      }
-    )
-    .setFooter({ text: "CSF • Ticket System" })
-    .setTimestamp();
+    .setFooter({ text: "CSF Ticket System" });
 
   const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
@@ -71,7 +50,6 @@ export async function sendTicketPanel(client: Client, channelId?: string) {
   await channel.send({
     embeds: [embed],
     components: [row],
-    files: [attachment],
   });
 
   logger.info("Ticket panel sent");
