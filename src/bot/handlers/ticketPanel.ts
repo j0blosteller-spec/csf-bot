@@ -5,49 +5,49 @@ import {
   ButtonBuilder,
   ButtonStyle,
   type TextChannel,
-  AttachmentBuilder,
 } from "discord.js";
 import { BOT_CONFIG } from "../config";
 import { logger } from "../../lib/logger";
 
+const BANNER_URL =
+  "https://via.placeholder.com/1200x400/1a1a2e/00d4ff?text=CLASSIC+SWORD+FIGHT";
+
 export async function sendTicketPanel(client: Client, channelId?: string) {
   const targetId = channelId ?? BOT_CONFIG.ticketPanelChannelId;
-  const channel = client.channels.cache.get(targetId) as TextChannel | undefined;
+  const channel = client.channels.cache.get(targetId) as
+    | TextChannel
+    | undefined;
 
   if (!channel) {
     logger.warn({ targetId }, "Ticket panel channel not found");
     return;
   }
 
-  const attachment = new AttachmentBuilder(`${__dirname}/banner.png`, {
-    name: "banner.png",
-  });
-
   const embed = new EmbedBuilder()
-    .setColor(0x00bfff)
-    .setTitle("🎫 Ticket Panel")
+    .setColor(0x00d4ff)
+    .setTitle("🎫 TICKET PANEL — CLASSIC SWORD FIGHT")
     .setDescription(
-      "Welcome to **Classic Sword Fight**\nSelect the option that best matches your needs."
+      "Welcome to our support center! Choose what you need help with below and we'll get you sorted instantly."
     )
-    .setImage("attachment://banner.png")
+    .setImage(BANNER_URL)
     .addFields(
       {
-        name: "❓ Have a quick question?",
-        value: "Press **Questions**",
+        name: "❓ QUICK QUESTION",
+        value: "Got a quick question? We're here to help!",
         inline: true,
       },
       {
-        name: "🎮 Have a problem with our discord?",
-        value: "Press **Discord Support**",
+        name: "🎮 DISCORD ISSUE",
+        value: "Having trouble with our Discord? Let us know!",
         inline: true,
       },
       {
-        name: "🕹️ Have a problem with our game?",
-        value: "Press **Game Support**",
+        name: "🕹️ GAME SUPPORT",
+        value: "Need help with the game? We'll fix it!",
         inline: true,
       }
     )
-    .setFooter({ text: "CSF • Ticket System" })
+    .setFooter({ text: "⚡ CSF Support System | Instant Response" })
     .setTimestamp();
 
   const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -71,7 +71,6 @@ export async function sendTicketPanel(client: Client, channelId?: string) {
   await channel.send({
     embeds: [embed],
     components: [row],
-    files: [attachment],
   });
 
   logger.info("Ticket panel sent");
