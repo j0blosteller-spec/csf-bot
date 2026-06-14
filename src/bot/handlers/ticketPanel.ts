@@ -33,18 +33,18 @@ export async function sendTicketPanel(client: Client, channelId?: string) {
     .addFields(
       {
         name: "❓ Have a quick question?",
-        value: "Press **Questions** to open the matching ticket flow.",
-        inline: false,
+        value: "Press **Questions**",
+        inline: true,
       },
       {
-        name: "🎮 Need help with Discord?",
-        value: "Press **Discord Support** to open the matching ticket flow.",
-        inline: false,
+        name: "🎮 Have a problem with our discord?",
+        value: "Press **Discord Support**",
+        inline: true,
       },
       {
-        name: "🕹️ Need help with a game?",
-        value: "Press **Game Support** to open the matching ticket flow.",
-        inline: false,
+        name: "🕹️ Have a problem with our game?",
+        value: "Press **Game Support**",
+        inline: true,
       }
     )
     .setFooter({ text: "CSF • Ticket System" })
