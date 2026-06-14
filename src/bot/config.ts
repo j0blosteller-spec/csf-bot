@@ -3,12 +3,11 @@ export const BOT_CONFIG = {
   ticketPanelChannelId: "1515471550046802001",
   welcomeChannelId: "1515074918855872562",
   staffRoleIds: [
-    "1515060608540868669",
-    "1515060607441965179",
-    "1515060606217093341",
-    "1515060609853689906",
-    "1515060610931490977",
+    "1515467837676847228",
+    "1515467839077875903",
+    "1515467839887118567",
   ],
+  moderatorRoleId: "", // TODO: set the Discord moderator role ID
   ticketCategories: [
     {
       id: "quick_question",
