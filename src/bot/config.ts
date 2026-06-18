@@ -7,6 +7,7 @@ export const BOT_CONFIG = {
     "1515467839077875903",
     "1515467839887118567",
   ],
+  moderatorRoleId: "", // TODO: set the Discord moderator role ID
   ticketCategories: [
     {
       id: "quick_question",
