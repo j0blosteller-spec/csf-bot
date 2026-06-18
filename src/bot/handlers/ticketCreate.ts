@@ -96,6 +96,21 @@ export async function handleTicketCreate(
     }
   }
 
+  if (BOT_CONFIG.moderatorRoleId) {
+    const modRole = guild.roles.cache.get(BOT_CONFIG.moderatorRoleId);
+    if (modRole) {
+      permissionOverwrites.push({
+        id: BOT_CONFIG.moderatorRoleId,
+        allow: [
+          PermissionFlagsBits.ViewChannel,
+          PermissionFlagsBits.SendMessages,
+          PermissionFlagsBits.ReadMessageHistory,
+          PermissionFlagsBits.ManageChannels,
+        ],
+      });
+    }
+  }
+
   const csfCategory = guild.channels.cache.find(
     (ch) =>
       ch.type === ChannelType.GuildCategory &&
